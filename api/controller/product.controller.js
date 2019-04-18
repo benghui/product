@@ -5,7 +5,7 @@ exports.create = (req, res) => {
   // Request validation
   if (!req.body) {
     return res.status(400).send({
-      message: "Product content can not be empty";
+      message: "Product content can not be empty"
     });
   }
 
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
       res.send(data);
     }).catch(err => {
     res.status(500).send({
-      message: err.message || "Something wrong while creating the product.";
+      message: err.message || "Something wrong while creating the product."
     });
   });
 };
@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
       res.send(products);
     }).catch(err => {
     res.status(500).send({
-      message: err.message || "Something wrong while retrieving products.";
+      message: err.message || "Something wrong while retrieving products."
     });
   });
 };
@@ -46,18 +46,18 @@ exports.findOne = (req, res) => {
     .then(product => {
       if (!product) {
         return res.status(404).send({
-          message: "Product not found with id " + req.params.productId;
+          message: "Product not found with id " + req.params.productId
         });
       }
       res.send(product);
     }).catch(err => {
     if (err.kind === 'ObjectId') {
       return res.status(404).send({
-        message: "Product not found with id " + req.params.productId;
+        message: "Product not found with id " + req.params.productId
       });
     }
     return res.status(500).send({
-      message: "Something wrong retrieving product with id " + req.params.productId;
+      message: "Something wrong retrieving product with id " + req.params.productId
     });
   });
 };
@@ -67,7 +67,7 @@ exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
     return res.status(400).send({
-      message: "Product content can not be empty";
+      message: "Product content can not be empty"
     });
   }
 
@@ -81,18 +81,18 @@ exports.update = (req, res) => {
     .then(product => {
       if (!product) {
         return res.status(404).send({
-          message: "Product not found with id " + req.params.productId;
+          message: "Product not found with id " + req.params.productId
         });
       }
       res.send(product);
     }).catch(err => {
     if (err.kind === 'ObjectId') {
       return res.status(404).send({
-        message: "Product not found with id " + req.params.productId;
+        message: "Product not found with id " + req.params.productId
       });
     }
     return res.status(500).send({
-      message: "Something wrong updating note with id " + req.params.productId;
+      message: "Something wrong updating note with id " + req.params.productId
     });
   });
 };
@@ -103,18 +103,18 @@ exports.delete = (req, res) => {
     .then(product => {
       if (!product) {
         return res.status(404).send({
-          message: "Product not found with id " + req.params.productId;
+          message: "Product not found with id " + req.params.productId
         });
       }
       res.send({message: "Product deleted successfully!"});
     }).catch(err => {
     if (err.kind === 'ObjectId' || err.name === 'NotFound') {
       return res.status(404).send({
-        message: "Product not found with id " + req.params.productId;
+        message: "Product not found with id " + req.params.productId
       });
     }
     return res.status(500).send({
-      message: "Could not delete product with id " + req.params.productId;
+      message: "Could not delete product with id " + req.params.productId
     });
   });
 };
